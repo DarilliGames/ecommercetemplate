@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>All Products Below</p>
+<div class="container-fluid">
+    <div class="row">
+    
+        {% for product in products %}
+        <div class="col-sm-4">{{ product }}</div>
+        {% endfor %}
+        
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

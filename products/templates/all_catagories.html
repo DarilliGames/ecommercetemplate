@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>All Products Below</p>
+<div class="container-fluid">
+    {% for catagory in catagories %}
+    <div class="row">
+        <div class="col-sm-4">{{ catagory }}</div>
+    
+            {% for product in catagory.products.all %}
+            <div class="col-sm-4">
+                <h4>{{ product }}</h4>
+                <p>€{{ product.price }}</p>
+                <p>{{ product.average_rating }}</p>
+            </div>
+            {% endfor %}
+        
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
