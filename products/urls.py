@@ -1,12 +1,10 @@
-from django.conf.urls import url
-from .views import all_products, a_product, all_catagories, a_catagory
+from django.urls import path
+from .views import all_products, product_detail, all_catagories
 
 
 urlpatterns = [
-    url(r'^products/', all_products, name='all_products'),
-    url(r'^product/(\d+)', a_product, name='product'),
-
-    url(r'^catagories/', all_catagories, name='all_catagories'),
-    url(r'^catagory/(\d+)', a_catagory, name='catagory'),
+    path('', all_products, name='all_products'),
+    path('<id>', product_detail, name='product'),
+    path('categories', all_catagories, name='all_catagories')
 
 ]
