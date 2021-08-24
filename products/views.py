@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.db.models import Q
 from django.db.models.functions import Lower
@@ -58,9 +58,13 @@ def all_products(request):
     return render(request, 'all_products.html', context)
 
 def product_detail(request, id):
-    product = Product.objects.get(pk=id)
-    # product = get_object_or_404(Product, pk=id)
-    return render(request, "a_product.html", {"product": product})
+    try:
+        product = Product.objects.get(pk=id)
+        return render(request, "a_product.html", {"product": product})
+    except Product.DoesNotExist:
+        return redirect("all_products")
+    
+    return redirect("all_products")
 
 def all_catagories(request):
     catagories = Catagory.objects.all()

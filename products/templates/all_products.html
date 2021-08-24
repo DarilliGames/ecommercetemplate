@@ -10,7 +10,7 @@
         {% endfor %} 
     </div>
     <div class="row">
-    
+    {% if products %}
         {% for product in products %}
         <div class="col-sm-4">
             <h1>{{ product }}</h1>
@@ -18,7 +18,12 @@
             <a href="{% url 'product' product.id %}">Click Here</a>
         </div>
         {% endfor %}
-        
+    {% else %}
+            <div class="col-md-6">
+                <h1>Looks like we could not find anything</h1>
+                <p>You may want to try making your search terms a little broader</p>
+            </div>
+    {% endif %}
     </div>
 </div>
 
