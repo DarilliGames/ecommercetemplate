@@ -30,6 +30,7 @@ def all_products(request):
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
+            
 
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -57,6 +58,7 @@ def all_products(request):
 
     return render(request, 'all_products.html', context)
 
+# Single Product
 def product_detail(request, id):
     try:
         product = Product.objects.get(pk=id)
@@ -66,7 +68,8 @@ def product_detail(request, id):
     
     return redirect("all_products")
 
-def all_catagories(request):
-    catagories = Catagory.objects.all()
-    return render(request, "all_catagories.html", {"catagories": catagories})
+# All Categories for easy sorting
+def all_categories(request):
+    categories = Category.objects.all()
+    return render(request, "all_categories.html", {"categories": categories})
 

@@ -25,6 +25,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+SITE_ID = 1
+
 ALLOWED_HOSTS = []
 
 # Application definition

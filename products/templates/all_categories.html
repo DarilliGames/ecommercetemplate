@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>All Products Below</p>
+<div class="container">
+    <div class="row">
+        {% for category in categories %}
+
+        <div class="col-md-4 text-center">
+            <h3>{{ category }}</h3>
+            <ul class="catclass">
+               <a href="{% url 'all_products'%}?category={% for sub in category.children.all%}{{ sub }},{% endfor %}"><li>View All</li></a>
+                {% for sub in category.children.all|slice:"0:3" %}
+                <li>{{ sub }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -16,3 +16,8 @@
 .hero-cell{
     align-items: center;
 }
+
+ul{
+    list-style-type: none;
+    padding: 0;
+}

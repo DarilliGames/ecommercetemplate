@@ -13,7 +13,7 @@
     {% if products %}
         {% for product in products %}
         <div class="col-sm-4">
-            <h1>{{ product }}</h1>
+            <h3>{{ product }}</h3>
             {{ product.category }}
             <a href="{% url 'product' product.id %}">Click Here</a>
         </div>
