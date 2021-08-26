@@ -2,11 +2,16 @@
 
 {% block content %}
 
-HERE IS A SINGLE PRODUCT
+
 <div class="container-fluid">
     <div class="row">
 
         <div class="col-sm-4">{{ product }}</div>
+        <a href="{% url 'add_to_cart' product.id %}">Add</a>
+        <form action="{% url 'add_to_cart' product.id %}">
+            <input type="number" name="quantity" id="quantity">
+            <input type="submit" value="Submit">
+        </form>
 
     </div>
 </div>
