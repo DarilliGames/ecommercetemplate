@@ -4,11 +4,16 @@
 
 <p>All Products Below</p>
 <div class="container-fluid">
+    {% if current_categories or subcategories %}
     <div class="row">
         {% for cat in current_categories %}
         {{ cat }}
-        {% endfor %} 
+        {% endfor %}
+        {% for sub_cat in sub_categories %}
+        {{ sub_cat }}
+        {% endfor %}
     </div>
+    {% endif %}
     <div class="row">
     {% if products %}
         {% for product in products %}

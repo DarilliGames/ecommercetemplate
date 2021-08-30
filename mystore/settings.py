@@ -75,7 +75,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'home.contexts.store'
+                'home.contexts.store',
+                'cart.contexts.cart_context'
             ],
         },
     },
@@ -84,6 +85,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mystore.wsgi.application'
 
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 

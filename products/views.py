@@ -11,6 +11,7 @@ def all_products(request):
     # init filter criteria
     query = None
     categories = None
+    sub_categories = None
     sort = None
     direction = None
 
@@ -28,7 +29,9 @@ def all_products(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            products = products.filter(category__name__in=categories)
+            cat_query = Q(category__name__in=categories) | Q(category__category__name__in=categories)
+            products = products.filter(cat_query)
+            sub_categories  = SubCategory.objects.filter(name__in=categories)
             categories = Category.objects.filter(name__in=categories)
             
 
@@ -53,6 +56,7 @@ def all_products(request):
         'products': products,
         'search_term': query,
         'current_categories': categories,
+        'sub_categories': sub_categories,
         'current_sorting': current_sorting
     }
 

@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <div id="hero" class="container h-full text-center">
     <div class="row h-half hero-title">
         <div class="col-12">
@@ -10,9 +9,9 @@
         </div>
     </div>
     <div class="row h-half hero-cell">
-        <div class="col-4">Browse our wares</div>
-        <div class="col-4">Check out Categories</div>
-        <div class="col-4">Get to Know us</div>
+        <div class="col-4"><a class="but-link" href="{% url 'all_products' %}">Browse our wares</a></div>
+        <div class="col-4"><a class="but-link" href="{% url 'all_categories' %}">View our Categories</a></div>
+        <div class="col-4"><a class="but-link" href="{% url 'all_products' %}">Get to Know us</a></div>
     </div>
 </div>
 
