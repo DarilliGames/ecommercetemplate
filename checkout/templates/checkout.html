@@ -1,13 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block pre_js %}
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
 
 {% block content %}
-
+<div id="card-errors"></div>
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
             <div class="row">
-                <form method="POST">
+                <form id="payment-form" method="POST">
                     {% csrf_token %}
+                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     {% for x in form %}
                     <div class="col-12">
                         {{ x.label }}:
@@ -19,6 +25,7 @@
                     <div class="col-12">
                         <input type="submit" value="Pay Now">
                     </div>
+                    <div id="card-element"></div>
                 </form>
             </div>
         </div>
@@ -58,4 +65,10 @@
 </div>
 
 
+{% endblock %}
+
+{% block post_js %}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
