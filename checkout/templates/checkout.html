@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for x in form %}
+                    <div class="col-12">
+                        {{ x.label }}:
+                    </div>
+                    <div class="col-12">
+                        {{ x }}
+                    </div>
+                    {% endfor %}
+                    <div class="col-12">
+                        <input type="submit" value="Pay Now">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-8">
+                    <h2>Item</h2>
+                </div>
+                <div class="col-2">
+                    <h2>Quantity</h2>
+                </div>
+                <div class="col-2">
+                    <h2>Sub-Total</h2>
+                </div>
+
+            </div>
+            {% for item in cart_items %}
+            <div class="row">
+                <div class="col-6">
+                    {{ item.product.name }}
+                </div>
+                <div class="col-3">
+                    {{ item.quantity }}
+                </div>
+                <div class="col-3">
+                    {{ item.total }}
+                </div>
+
+            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-9">Total</div>
+                <div class="col-3">{{ total }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
