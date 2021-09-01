@@ -4,19 +4,26 @@
 
 <p>All Products Below</p>
 <div class="container">
-    {% if current_categories or subcategories %}
+    {% for cat in categories %}
+    {% if cat.prods %}
     <div class="row">
-        {% for cat in current_categories %}
-        {{ cat }}
-        {% endfor %}
-        {% for sub_cat in sub_categories %}
-        {{ sub_cat }}
-        {% endfor %}
+        <div class="col-12">
+            <h1 class="cat-header">{{ cat }}</h1>
+        </div>
+
     </div>
-    {% endif %}
     <div class="row">
-    {% if products %}
-        {% for product in products %}
+        <div class="col-12 text-center">
+            {% for sub in cat.children.all %}
+            {% if sub.products.all %}
+            {% if not forloop.first %} | {% endif %}<a href="{% url 'all_products' %}?category={{ sub }}">{{ sub }}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        {% for product in cat.prods %}
+
         <div class="col-sm-3">
             <div class="product-cell">
                 <img class="product-tile"
@@ -28,14 +35,13 @@
                 <a href="{% url 'product' product.id %}">Click Here</a>
             </div>
         </div>
+
         {% endfor %}
-    {% else %}
-            <div class="col-md-6">
-                <h1>Looks like we could not find anything</h1>
-                <p>You may want to try making your search terms a little broader</p>
-            </div>
-    {% endif %}
     </div>
+    {% endif %}
+    
+
+    {% endfor %}
 </div>
 
 

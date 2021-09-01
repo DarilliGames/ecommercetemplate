@@ -43,7 +43,7 @@ card.addEventListener('change', function (event) {
     }
 });
 
-// Handle form submit
+// On form Submitted
 var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
@@ -53,8 +53,9 @@ form.addEventListener('submit', function(ev) {
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
+    // Save info is if there is a save-info option for profile based site
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
-    // From using {% csrf_token %} in the form
+    // Uses CSRFToken to ensure request is from this site
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,

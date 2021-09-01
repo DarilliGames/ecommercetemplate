@@ -4,8 +4,18 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 
+def product_home(request):
+    categories = Category.objects.all()
+    for cat in categories:
+        cat.prods = Product.objects.filter(category__category__name=cat.name).order_by("created_date")
+        
+    context = {
+        "categories": categories
+    }
+    return render(request, 'products.html', context)
 
-def all_products(request):
+
+def product_search(request):
     products = Product.objects.all()
 
     # init filter criteria
@@ -50,17 +60,23 @@ def all_products(request):
 
             products = products.order_by(sortkey)
 
-    current_sorting = f'{sort}_{direction}'
+        current_sorting = f'{sort}_{direction}'
 
-    context = {
-        'products': products,
-        'search_term': query,
-        'current_categories': categories,
-        'sub_categories': sub_categories,
-        'current_sorting': current_sorting
-    }
+        context = {
+            'products': products,
+            'search_term': query,
+            'current_categories': categories,
+            'sub_categories': sub_categories,
+            'current_sorting': current_sorting
+        }
 
-    return render(request, 'all_products.html', context)
+        return render(request, 'all_products.html', context)
+    else:
+        context = {
+            "categories": Category.objects.all()
+        }
+        return render(request, 'products.html', context)
+
 
 # Single Product
 def product_detail(request, id):

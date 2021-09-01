@@ -45,7 +45,10 @@
             Categories
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'all_products' %}?category=book">Books</a>
+            <a class="dropdown-item" href="{% url 'all_products' %}?category=Books">Books</a>
+            <a class="dropdown-item" href="{% url 'all_products' %}?category=Magazines">Magazines</a>
+            <a class="dropdown-item" href="{% url 'all_products' %}?category=Comics">Comics</a>
+            <a class="dropdown-item" href="{% url 'all_products' %}?category=Manga">Manga</a>
             <a class="dropdown-item" href="{% url 'all_products' %}"></a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{% url 'all_categories' %}">View All</a>

@@ -28,13 +28,14 @@ class Product(models.Model):
     description = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to="images", blank=True, null=True)
+    external_image = models.URLField(blank=True, null=True)
     rating = models.IntegerField()
     reviews = models.IntegerField()
     
     @property
     def average_rating(self):
         if self.reviews > 0:
-            return self.rating / self.reviews
+            return round(self.rating / self.reviews, 1)
         else:
             return "Newly Released!"
 
